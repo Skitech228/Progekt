@@ -14,29 +14,47 @@ namespace WindowsFormsApp16
 {
     public partial class Form1 : Form
     {
-        GunaPictureBox[] a = new GunaPictureBox[32];
-        int[,] mas=new int[6,6];
+        public string pers = @"D:\1.png";
+        public string fon = @"D:\Вода.png";
+        GunaPictureBox[,] a;
+        int[,] mas;
+        GunaPictureBox guna = new GunaPictureBox();
+        public void Update()
+        {
+            Arr ar = new Arr();
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (mas[i, j] == 1)
+                        ar.picture(a[i,j].Location,pers);
+                    if (mas[i, j] == 0)
+                        ar.picture(a[i, j].Location, fon);
+                }
+            }
+        }
         public Form1()
         {
             InitializeComponent();
             gunaAnimateWindow1.Start();
-            for (int i = 0; i < 6; i++)
+            Arr ar = new Arr();
+            a = ar.pic(6,fon,pers);
+            foreach (var item in a)
             {
-                for (int j = 0; j < 6; j++)
-                {
-                    mas[i, j] = 0;
-                }
+                this.Controls.Add(item);
             }
-            mas[0,0]=1;
-            int[,] mas2 = new int[6, 6];
-            Arr arr = new Arr();
-            mas2=arr.ReadArray("1.txt");
+            mas = ar.ReadArray(@"D:\2.txt");
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    if (mas[i, j] == 0)
-                        mas[i, j] = mas2[i, j];
+                    if (mas[i, j] == 2)
+                    {
+                        guna=ar.picture(a[i,j].Location, @"D:\4.jpg");
+                        this.Controls.Remove(a[i,j]);
+                        a[i, j] = guna;
+                        this.Controls.Add(a[i, j]);
+                    }
                 }
             }
         }
@@ -60,27 +78,6 @@ namespace WindowsFormsApp16
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
-        }
-        private void Initial()
-        {
-            a[0] = gunaPictureBox1; a[1] = gunaPictureBox2; a[2] = gunaPictureBox3; a[3] = gunaPictureBox4; a[4] = gunaPictureBox5; a[5] = gunaPictureBox6;
-            a[6] = gunaPictureBox7; a[7] = gunaPictureBox8; a[8] = gunaPictureBox9; a[9] = gunaPictureBox10; a[10] = gunaPictureBox11; a[11] = gunaPictureBox12;
-            a[12] = gunaPictureBox13; a[13] = gunaPictureBox14; a[32] = gunaPictureBox33; a[33] = gunaPictureBox34; a[34] = gunaPictureBox35; a[35] = gunaPictureBox36;
-            a[14] = gunaPictureBox15; a[15] = gunaPictureBox16; a[16] = gunaPictureBox17; a[17] = gunaPictureBox18; a[18] = gunaPictureBox19; a[19] = gunaPictureBox20;
-            a[20] = gunaPictureBox21; a[21] = gunaPictureBox22; a[22] = gunaPictureBox23; a[23] = gunaPictureBox24; a[24] = gunaPictureBox25; a[25] = gunaPictureBox26;
-            a[26] = gunaPictureBox27; a[27] = gunaPictureBox28; a[28] = gunaPictureBox29; a[29] = gunaPictureBox30; a[30] = gunaPictureBox31; a[31] = gunaPictureBox32;
-        }
-        private void Apdate()
-        {
-            for (int i = 1; i < 7; i++)
-            {
-                for (int j = 1; j < 7; j++)
-                {
-                    if (mas[i - 1, j - 1] == 1)
-                        a[i * j - 1].Image = Image.FromFile(@"parrot_PNG713.png");
-                }
-            }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {        
@@ -89,46 +86,119 @@ namespace WindowsFormsApp16
 
         private void gunaTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            int u = 0, o = 0;
-            //if (gunaPictureBox1.Top <= f.Top + 100 && gunaPictureBox1.Bottom <= f.Bottom + 100 && gunaPictureBox1.Right <= f.Right + 100 && gunaPictureBox1.Width <= f.Width + 100)
-            //{
-
-            if (e.KeyCode == Keys.Left)
-            {
+            bool f = false;
+            Arr ar = new Arr();
+            int j = 0;
+            if (e.KeyData==Keys.Down)
                 for (int i = 0; i < 6; i++)
                 {
-                    for (int j = 0; j < 6; j++)
+                    for (j = 0; j < 6; j++)
                     {
-                        if (mas[i, j] == 1)
-                            u = i; o = j;
+                        if(mas[i,j]==1 && i!=5)
+                            if(mas[i+1,j]!=2)
+                            {
+                                mas[i, j] = 0;
+                                mas[i + 1, j] = 1;
+                                guna=ar.Defolt(a[i, j].Location, fon);
+                                this.Controls.Remove(a[i, j]);
+                                a[i, j] = guna;
+                                this.Controls.Add(a[i, j]);
+                                guna = ar.Defolt(a[i + 1, j].Location, pers);
+                                this.Controls.Remove(a[i + 1, j]);
+                                a[i + 1, j] = guna;
+                                this.Controls.Add(a[i + 1, j]);
+                                f = true;
+                            }
                     }
+                    if (f)
+                            break;
                 }
-                if (o != 0)
-                    if (mas[u, o - 1] == 0)
-                    {
-                        mas[u, o] = 0;
-                        mas[u, o - 1] = 1;
-                    }
-            }
-            if (e.KeyCode == Keys.D)
-            {
+            if (e.KeyData == Keys.Right)
                 for (int i = 0; i < 6; i++)
                 {
-                    for (int j = 0; j < 6; j++)
+                    for (j = 0; j < 6; j++)
                     {
-                        if (mas[i, j] == 1)
-                            u = i; o = j;
+                        if (mas[i, j] == 1 && j != 5)
+                            if (mas[i,j+1] != 2)
+                            {
+                                mas[i, j] = 0;
+                                mas[i, j+1] = 1;
+                                guna = ar.Defolt(a[i, j].Location, fon);
+                                this.Controls.Remove(a[i, j]);
+                                a[i, j] = guna;
+                                this.Controls.Add(a[i, j]);
+                                guna = ar.Defolt(a[i, j+1].Location, pers);
+                                this.Controls.Remove(a[i, j+1]);
+                                a[i, j+1] = guna;
+                                this.Controls.Add(a[i, j+1]);
+                                f = true;
+                            }
+                        if (f)
+                            break;
                     }
+                    if (f)
+                        break;
                 }
-                if (o != 5)
-                    if (mas[u, o + 1] != 0)
+            if (e.KeyData == Keys.Left)
+                for (int i = 0; i < 6; i++)
+                {
+                    for (j = 0; j < 6; j++)
                     {
-                        mas[u, o] = 0;
-                        mas[u, o + 1] = 1;
+                        if (mas[i, j] == 1 && j != 0)
+                            if (mas[i, j - 1] != 2)
+                            {
+                                mas[i, j] = 0;
+                                mas[i, j - 1] = 1;
+                                guna = ar.Defolt(a[i, j].Location, fon);
+                                this.Controls.Remove(a[i, j]);
+                                a[i, j] = guna;
+                                this.Controls.Add(a[i, j]);
+                                guna = ar.Defolt(a[i, j - 1].Location, pers);
+                                this.Controls.Remove(a[i, j - 1]);
+                                a[i, j - 1] = guna;
+                                this.Controls.Add(a[i, j - 1]);
+                                f = true;
+                            }
+                        if (f)
+                            break;
                     }
+                    if (f)
+                        break;
+                }
+            if (e.KeyData == Keys.Up)
+                for (int i = 0; i < 6; i++)
+                {
+                    for (j = 0; j < 6; j++)
+                    {
+                        if (mas[i, j] == 1 && i != 0)
+                            if (mas[i - 1, j] != 2)
+                            {
+                                mas[i, j] = 0;
+                                mas[i - 1, j] = 1;
+                                guna = ar.Defolt(a[i, j].Location, fon);
+                                this.Controls.Remove(a[i, j]);
+                                a[i, j] = guna;
+                                this.Controls.Add(a[i, j]);
+                                guna = ar.Defolt(a[i-1, j].Location, pers);
+                                this.Controls.Remove(a[i-1, j]);
+                                a[i-1, j] = guna;
+                                this.Controls.Add(a[i-1, j]);
+                                f = true;
+                            }
+                        if (f)
+                            break;
+                    }
+                    if (f)
+                        break;
+                }
+            if (mas[5, 5] == 1)
+            {
+                MessageBox.Show("Вы смогли");
+                Form3 form = new Form3();
+                //form.gunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_CENTER;
+                form.Show();
+                this.Hide();
             }
-            Apdate();
-            // }
         }
     }
 }

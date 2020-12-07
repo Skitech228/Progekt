@@ -31,7 +31,7 @@ namespace WindowsFormsApp16
                         values = line.Split(' ').Select(int.Parse).ToArray();
 
                         for (int j = 0; j < m; j++)
-                            result[i, j] = values[j]-32;
+                            result[i, j] = values[j];
                     }
                         break;
                 }
@@ -43,7 +43,7 @@ namespace WindowsFormsApp16
 
             return result;
         }
-        public GunaPictureBox[,] pic(int raz)
+        public GunaPictureBox[,] pic(int raz,string fon,string pers)
         {
             int x=0;
             int y = 34;
@@ -56,15 +56,59 @@ namespace WindowsFormsApp16
                     System.Drawing.Point sys = new System.Drawing.Point(x,y);
                     pic.Location = sys;
                     x+= 100;
-                    System.Drawing.Image imag = System.Drawing.Image.FromFile(@"D:\1.png");
-                    pic.Image = imag;                    
+                    System.Drawing.Size si = new System.Drawing.Size(100,100);
+                    pic.Size=si;
+                    System.Drawing.Image imag2 = System.Drawing.Image.FromFile(@fon);
+                    pic.Image = imag2;                    
                     pic.SizeMode = PictureBoxSizeMode.StretchImage;
                     guna[i, j] = pic;
+                    pic.Visible = true;
                 }
                 y += 100;
                 x = 0;
             }
+            System.Drawing.Image imag = System.Drawing.Image.FromFile(@pers);
+            guna[0,0].Image = imag;
+            imag = System.Drawing.Image.FromFile(@"D:\end.jpg");
+            guna[raz-1,raz-1].Image=imag;
             return guna;
         }
+        public GunaPictureBox Defolt(System.Drawing.Point sys)
+        {
+            GunaPictureBox pic = new GunaPictureBox();
+            pic.Location = sys;
+            System.Drawing.Size si = new System.Drawing.Size(100, 100);
+            pic.Size = si;
+            System.Drawing.Image imag2 = System.Drawing.Image.FromFile(@"D:\Вода.png");
+            pic.Image = imag2;
+            pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic.Visible = true;
+            return pic;
+        }
+        public GunaPictureBox Defolt(System.Drawing.Point sys,string par)
+        {
+            GunaPictureBox pic = new GunaPictureBox();
+            pic.Location = sys;
+            System.Drawing.Size si = new System.Drawing.Size(100, 100);
+            pic.Size = si;
+            System.Drawing.Image imag2 = System.Drawing.Image.FromFile(par);
+            pic.Image = imag2;
+            pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic.Visible = true;
+            return pic;
+        }
+        public GunaPictureBox picture(System.Drawing.Point sys,string pars)
+        {
+            GunaPictureBox pic = new GunaPictureBox();
+            pic.Location = sys;
+            System.Drawing.Size si = new System.Drawing.Size(100, 100);
+            pic.Size = si;
+            System.Drawing.Image imag = System.Drawing.Image.FromFile(pars);
+            pic.Image = imag;                    
+            pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic.Visible = true;
+            return pic;
+        }
+
     }
 }

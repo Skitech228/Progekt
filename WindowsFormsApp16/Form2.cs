@@ -21,5 +21,25 @@ namespace WindowsFormsApp16
         {
             gunaAnimateWindow1.Start();
         }
+
+        private void gunaGradientButton1_Click(object sender, EventArgs e)
+        {
+            Form1 f = new Form1();
+            OpenFileDialog file = new OpenFileDialog();
+            file.ShowDialog();
+            string filename=file.FileName;
+            f.pers=filename;
+            f.Close();
+            Form4 f2 = new Form4();
+            filename = file.FileName;
+            f2.pers = filename;
+            Form3 f3 = new Form3();
+            filename = file.FileName;
+            f3.pers = filename;
+        }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+        }
     }
 }

@@ -72,6 +72,7 @@
             this.gunaGradientButton1.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton1.TabIndex = 5;
             this.gunaGradientButton1.Text = "Персонаж";
+            this.gunaGradientButton1.Click += new System.EventHandler(this.gunaGradientButton1_Click);
             // 
             // gunaLabel1
             // 
@@ -277,6 +278,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form2";
             this.Text = "Form2";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
