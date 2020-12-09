@@ -40,6 +40,13 @@
             this.gunaGradientButton6 = new Guna.UI.WinForms.GunaGradientButton();
             this.gunaGradientButton7 = new Guna.UI.WinForms.GunaGradientButton();
             this.gunaGradientButton8 = new Guna.UI.WinForms.GunaGradientButton();
+            this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
+            this.gunaTextBox2 = new Guna.UI.WinForms.GunaTextBox();
+            this.gunaGradientButton9 = new Guna.UI.WinForms.GunaGradientButton();
+            this.gunaGradientButton10 = new Guna.UI.WinForms.GunaGradientButton();
+            this.gunaGradientButton11 = new Guna.UI.WinForms.GunaGradientButton();
+            this.gunaGradientButton12 = new Guna.UI.WinForms.GunaGradientButton();
+            this.gunaGradientButton13 = new Guna.UI.WinForms.GunaGradientButton();
             this.SuspendLayout();
             // 
             // gunaAnimateWindow1
@@ -109,6 +116,7 @@
             this.gunaGradientButton2.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton2.TabIndex = 7;
             this.gunaGradientButton2.Text = "Бот";
+            this.gunaGradientButton2.Click += new System.EventHandler(this.gunaGradientButton2_Click);
             // 
             // gunaGradientButton3
             // 
@@ -134,6 +142,7 @@
             this.gunaGradientButton3.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton3.TabIndex = 8;
             this.gunaGradientButton3.Text = "Жизни";
+            this.gunaGradientButton3.Click += new System.EventHandler(this.gunaGradientButton3_Click);
             // 
             // gunaGradientButton4
             // 
@@ -148,7 +157,7 @@
             this.gunaGradientButton4.ForeColor = System.Drawing.Color.White;
             this.gunaGradientButton4.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton4.Image")));
             this.gunaGradientButton4.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaGradientButton4.Location = new System.Drawing.Point(272, 143);
+            this.gunaGradientButton4.Location = new System.Drawing.Point(272, 146);
             this.gunaGradientButton4.Name = "gunaGradientButton4";
             this.gunaGradientButton4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
             this.gunaGradientButton4.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(255)))));
@@ -159,6 +168,7 @@
             this.gunaGradientButton4.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton4.TabIndex = 9;
             this.gunaGradientButton4.Text = "Время прохождения";
+            this.gunaGradientButton4.Click += new System.EventHandler(this.gunaGradientButton4_Click);
             // 
             // gunaGradientButton5
             // 
@@ -184,6 +194,7 @@
             this.gunaGradientButton5.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton5.TabIndex = 10;
             this.gunaGradientButton5.Text = "Карта";
+            this.gunaGradientButton5.Click += new System.EventHandler(this.gunaGradientButton5_Click);
             // 
             // gunaGradientButton6
             // 
@@ -198,7 +209,7 @@
             this.gunaGradientButton6.ForeColor = System.Drawing.Color.White;
             this.gunaGradientButton6.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton6.Image")));
             this.gunaGradientButton6.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaGradientButton6.Location = new System.Drawing.Point(272, 206);
+            this.gunaGradientButton6.Location = new System.Drawing.Point(272, 207);
             this.gunaGradientButton6.Name = "gunaGradientButton6";
             this.gunaGradientButton6.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
             this.gunaGradientButton6.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(255)))));
@@ -259,13 +270,186 @@
             this.gunaGradientButton8.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton8.TabIndex = 13;
             this.gunaGradientButton8.Text = "Настройки";
+            this.gunaGradientButton8.Click += new System.EventHandler(this.gunaGradientButton8_Click);
+            // 
+            // gunaTextBox1
+            // 
+            this.gunaTextBox1.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox1.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTextBox1.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaTextBox1.Location = new System.Drawing.Point(214, 146);
+            this.gunaTextBox1.Name = "gunaTextBox1";
+            this.gunaTextBox1.PasswordChar = '\0';
+            this.gunaTextBox1.Size = new System.Drawing.Size(52, 43);
+            this.gunaTextBox1.TabIndex = 14;
+            // 
+            // gunaTextBox2
+            // 
+            this.gunaTextBox2.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox2.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox2.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox2.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaTextBox2.Location = new System.Drawing.Point(458, 146);
+            this.gunaTextBox2.Name = "gunaTextBox2";
+            this.gunaTextBox2.PasswordChar = '\0';
+            this.gunaTextBox2.Size = new System.Drawing.Size(52, 43);
+            this.gunaTextBox2.TabIndex = 15;
+            // 
+            // gunaGradientButton9
+            // 
+            this.gunaGradientButton9.AnimationHoverSpeed = 0.07F;
+            this.gunaGradientButton9.AnimationSpeed = 0.03F;
+            this.gunaGradientButton9.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(43)))), ((int)(((byte)(226)))));
+            this.gunaGradientButton9.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(43)))), ((int)(((byte)(222)))));
+            this.gunaGradientButton9.BorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton9.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaGradientButton9.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaGradientButton9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaGradientButton9.ForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton9.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton9.Image")));
+            this.gunaGradientButton9.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaGradientButton9.Location = new System.Drawing.Point(54, 338);
+            this.gunaGradientButton9.Name = "gunaGradientButton9";
+            this.gunaGradientButton9.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
+            this.gunaGradientButton9.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(255)))));
+            this.gunaGradientButton9.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton9.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton9.OnHoverImage = null;
+            this.gunaGradientButton9.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaGradientButton9.Size = new System.Drawing.Size(88, 43);
+            this.gunaGradientButton9.TabIndex = 16;
+            this.gunaGradientButton9.Text = "Level 1";
+            this.gunaGradientButton9.Visible = false;
+            this.gunaGradientButton9.Click += new System.EventHandler(this.gunaGradientButton9_Click);
+            // 
+            // gunaGradientButton10
+            // 
+            this.gunaGradientButton10.AnimationHoverSpeed = 0.07F;
+            this.gunaGradientButton10.AnimationSpeed = 0.03F;
+            this.gunaGradientButton10.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(43)))), ((int)(((byte)(226)))));
+            this.gunaGradientButton10.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(43)))), ((int)(((byte)(222)))));
+            this.gunaGradientButton10.BorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton10.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaGradientButton10.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaGradientButton10.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaGradientButton10.ForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton10.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton10.Image")));
+            this.gunaGradientButton10.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaGradientButton10.Location = new System.Drawing.Point(199, 338);
+            this.gunaGradientButton10.Name = "gunaGradientButton10";
+            this.gunaGradientButton10.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
+            this.gunaGradientButton10.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(255)))));
+            this.gunaGradientButton10.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton10.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton10.OnHoverImage = null;
+            this.gunaGradientButton10.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaGradientButton10.Size = new System.Drawing.Size(88, 43);
+            this.gunaGradientButton10.TabIndex = 17;
+            this.gunaGradientButton10.Text = "Level 2";
+            this.gunaGradientButton10.Visible = false;
+            this.gunaGradientButton10.Click += new System.EventHandler(this.gunaGradientButton10_Click);
+            // 
+            // gunaGradientButton11
+            // 
+            this.gunaGradientButton11.AnimationHoverSpeed = 0.07F;
+            this.gunaGradientButton11.AnimationSpeed = 0.03F;
+            this.gunaGradientButton11.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(43)))), ((int)(((byte)(226)))));
+            this.gunaGradientButton11.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(43)))), ((int)(((byte)(222)))));
+            this.gunaGradientButton11.BorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton11.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaGradientButton11.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaGradientButton11.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaGradientButton11.ForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton11.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton11.Image")));
+            this.gunaGradientButton11.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaGradientButton11.Location = new System.Drawing.Point(345, 338);
+            this.gunaGradientButton11.Name = "gunaGradientButton11";
+            this.gunaGradientButton11.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
+            this.gunaGradientButton11.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(255)))));
+            this.gunaGradientButton11.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton11.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton11.OnHoverImage = null;
+            this.gunaGradientButton11.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaGradientButton11.Size = new System.Drawing.Size(88, 43);
+            this.gunaGradientButton11.TabIndex = 18;
+            this.gunaGradientButton11.Text = "Level 3";
+            this.gunaGradientButton11.Visible = false;
+            this.gunaGradientButton11.Click += new System.EventHandler(this.gunaGradientButton11_Click);
+            // 
+            // gunaGradientButton12
+            // 
+            this.gunaGradientButton12.AnimationHoverSpeed = 0.07F;
+            this.gunaGradientButton12.AnimationSpeed = 0.03F;
+            this.gunaGradientButton12.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(43)))), ((int)(((byte)(226)))));
+            this.gunaGradientButton12.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(43)))), ((int)(((byte)(222)))));
+            this.gunaGradientButton12.BorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton12.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaGradientButton12.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaGradientButton12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaGradientButton12.ForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton12.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton12.Image")));
+            this.gunaGradientButton12.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaGradientButton12.Location = new System.Drawing.Point(41, 387);
+            this.gunaGradientButton12.Name = "gunaGradientButton12";
+            this.gunaGradientButton12.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
+            this.gunaGradientButton12.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(255)))));
+            this.gunaGradientButton12.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton12.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton12.OnHoverImage = null;
+            this.gunaGradientButton12.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaGradientButton12.Size = new System.Drawing.Size(196, 43);
+            this.gunaGradientButton12.TabIndex = 19;
+            this.gunaGradientButton12.Text = "Можно выбирать уровень";
+            this.gunaGradientButton12.Visible = false;
+            this.gunaGradientButton12.Click += new System.EventHandler(this.gunaGradientButton12_Click);
+            // 
+            // gunaGradientButton13
+            // 
+            this.gunaGradientButton13.AnimationHoverSpeed = 0.07F;
+            this.gunaGradientButton13.AnimationSpeed = 0.03F;
+            this.gunaGradientButton13.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(43)))), ((int)(((byte)(226)))));
+            this.gunaGradientButton13.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(43)))), ((int)(((byte)(222)))));
+            this.gunaGradientButton13.BorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton13.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaGradientButton13.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaGradientButton13.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaGradientButton13.ForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton13.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton13.Image")));
+            this.gunaGradientButton13.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaGradientButton13.Location = new System.Drawing.Point(243, 387);
+            this.gunaGradientButton13.Name = "gunaGradientButton13";
+            this.gunaGradientButton13.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(145)))), ((int)(((byte)(221)))));
+            this.gunaGradientButton13.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(255)))));
+            this.gunaGradientButton13.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaGradientButton13.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaGradientButton13.OnHoverImage = null;
+            this.gunaGradientButton13.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaGradientButton13.Size = new System.Drawing.Size(196, 43);
+            this.gunaGradientButton13.TabIndex = 20;
+            this.gunaGradientButton13.Text = "Только после предыдущего";
+            this.gunaGradientButton13.Visible = false;
+            this.gunaGradientButton13.Click += new System.EventHandler(this.gunaGradientButton13_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BlueViolet;
-            this.ClientSize = new System.Drawing.Size(489, 363);
+            this.ClientSize = new System.Drawing.Size(512, 456);
+            this.Controls.Add(this.gunaGradientButton13);
+            this.Controls.Add(this.gunaGradientButton12);
+            this.Controls.Add(this.gunaGradientButton11);
+            this.Controls.Add(this.gunaGradientButton10);
+            this.Controls.Add(this.gunaGradientButton9);
+            this.Controls.Add(this.gunaTextBox2);
+            this.Controls.Add(this.gunaTextBox1);
             this.Controls.Add(this.gunaGradientButton8);
             this.Controls.Add(this.gunaGradientButton7);
             this.Controls.Add(this.gunaGradientButton6);
@@ -297,5 +481,12 @@
         private Guna.UI.WinForms.GunaGradientButton gunaGradientButton4;
         private Guna.UI.WinForms.GunaGradientButton gunaGradientButton3;
         private Guna.UI.WinForms.GunaGradientButton gunaGradientButton2;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox2;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox1;
+        private Guna.UI.WinForms.GunaGradientButton gunaGradientButton11;
+        private Guna.UI.WinForms.GunaGradientButton gunaGradientButton10;
+        private Guna.UI.WinForms.GunaGradientButton gunaGradientButton9;
+        private Guna.UI.WinForms.GunaGradientButton gunaGradientButton13;
+        private Guna.UI.WinForms.GunaGradientButton gunaGradientButton12;
     }
 }

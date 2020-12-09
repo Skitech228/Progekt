@@ -14,36 +14,39 @@ namespace WindowsFormsApp16
 {
     public partial class Form1 : Form
     {
-        public string pers = @"D:\1.png";
+        public string pers = new Arr().Pers();
         public string fon = @"D:\Вода.png";
+        public string hard = @"D:\serce_plamya.png";
+        public string bot = new Arr().Bot();
+        public string setting = new Arr().Setting();
         GunaPictureBox[,] a;
-        int[,] mas;
+        GunaPictureBox[] hards;
+        public int[,] mas;
+        public int[] hardsmas;
         GunaPictureBox guna = new GunaPictureBox();
-        public void Update()
-        {
-            Arr ar = new Arr();
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    if (mas[i, j] == 1)
-                        ar.picture(a[i,j].Location,pers);
-                    if (mas[i, j] == 0)
-                        ar.picture(a[i, j].Location, fon);
-                }
-            }
-        }
         public Form1()
         {
             InitializeComponent();
             gunaAnimateWindow1.Start();
+            if (setting == "true")
+            {
+                gunaButton2.Visible = true;
+                gunaComboBox1.Visible = true;
+            }
             Arr ar = new Arr();
+            pers = @ar.Pers();
             a = ar.pic(6,fon,pers);
             foreach (var item in a)
             {
                 this.Controls.Add(item);
             }
-            mas = ar.ReadArray(@"D:\2.txt");
+            mas = ar.ReadArray(ar.pars(1));
+            hardsmas = new int[ar.Hards(@"D:\settings.txt")];
+            hards = ar.hards(hardsmas.Length, hard);
+            foreach (var item in hards)
+            {
+                this.Controls.Add(item);
+            }
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
@@ -58,7 +61,20 @@ namespace WindowsFormsApp16
                 }
             }
         }
-
+        public void UpdateHards()
+        {
+            Arr ar = new Arr();
+            foreach (var item in hards)
+            {
+                this.Controls.Remove(item);
+            }
+            hardsmas = new int[ar.Hards(@"D:\settings.txt")];
+            hards = ar.hards(hardsmas.Length, hard);
+            foreach (var item in hards)
+            {
+                this.Controls.Add(item);
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -75,15 +91,6 @@ namespace WindowsFormsApp16
             f.gunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_CENTER;
             f.Show();
         }
-
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        }
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {        
-
-        }
-
         private void gunaTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
             bool f = false;
@@ -197,6 +204,81 @@ namespace WindowsFormsApp16
                 Form3 form = new Form3();
                 //form.gunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_CENTER;
                 form.Show();
+                this.Hide();
+            }
+        }
+
+        private void gunaButton1_Click(object sender, EventArgs e)
+        {
+            UpdateHards();
+            UpdateForm();
+        }
+
+        private void UpdateForm()
+        {
+            setting = new Arr().Setting();
+            if (setting == "true")
+            {
+                gunaButton2.Visible = true;
+                gunaComboBox1.Visible = true;
+            }
+            else
+            {
+                gunaButton2.Visible = false;
+                gunaComboBox1.Visible = false;
+            }
+            foreach (var item in a)
+            {
+                this.Controls.Remove(item);
+            }
+            Arr ar = new Arr();
+            pers = @ar.Pers();
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    this.Controls.Remove(a[i, j]);
+                }
+            }
+            a = ar.pic(6, fon, pers);
+            foreach (var item in a)
+            {
+                this.Controls.Add(item);
+            }
+            mas = ar.ReadArray(ar.pars(1));
+            hardsmas = new int[ar.Hards(@"D:\settings.txt")];
+            hards = ar.hards(hardsmas.Length, hard);
+            foreach (var item in hards)
+            {
+                this.Controls.Add(item);
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (mas[i, j] == 2)
+                    {
+                        guna = ar.picture(a[i, j].Location, @"D:\4.jpg");
+                        this.Controls.Remove(a[i, j]);
+                        a[i, j] = guna;
+                        this.Controls.Add(a[i, j]);
+                    }
+                }
+            }
+        }
+
+        private void gunaButton2_Click(object sender, EventArgs e)
+        {
+            if (gunaComboBox1.Text == "2")
+            {
+                Form3 f = new Form3();
+                f.Show();
+                this.Hide();
+            }
+            if (gunaComboBox1.Text == "3")
+            {
+                Form4 f = new Form4();
+                f.Show();
                 this.Hide();
             }
         }

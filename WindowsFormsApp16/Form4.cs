@@ -13,21 +13,33 @@ namespace WindowsFormsApp16
 {
     public partial class Form4 : Form
     {
-        public string pers = @"D:\1.png";
+        public string pers = new Arr().Pers();
         public string fon = @"D:\Вода.png";
+        public string hard = @"D:\serce_plamya.png";
+        public string bot = new Arr().Bot();
+        public string setting = new Arr().Setting();
         GunaPictureBox[,] a;
-        int[,] mas;
+        GunaPictureBox[] hards;
+        public int[,] mas;
+        public int[] hardsmas;
         GunaPictureBox guna = new GunaPictureBox();
         public Form4()
         {
             InitializeComponent();
             Arr ar = new Arr();
+            pers = @ar.Pers();
             a = ar.pic(10, fon, pers);
             foreach (var item in a)
             {
                 this.Controls.Add(item);
             }
-            mas = ar.ReadArray(@"D:\1.txt");
+            mas = ar.ReadArray(ar.pars(3));
+            hardsmas = new int[ar.Hards(@"D:\settings.txt")];
+            hards = ar.hards(hardsmas.Length, hard);
+            foreach (var item in hards)
+            {
+                this.Controls.Add(item);
+            }
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -40,6 +52,37 @@ namespace WindowsFormsApp16
                         this.Controls.Add(a[i, j]);
                     }
                 }
+            }
+            tm = new Timer();
+            tm.Tick += new EventHandler(tm_Tick);
+            tm.Interval = 1000;
+            tm.Start();
+        }
+
+        Timer tm = null;
+        int startValue = new Arr().Time();
+
+        private string Int2StringTime(int time)
+        {
+            int hours = (time - (time % (60 * 60))) / (60 * 60);
+            int minutes = (time - time % 60) / 60 - hours * 60;
+            int seconds = time - hours * 60 * 60 - minutes * 60;
+            return String.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+        }
+
+        void tm_Tick(object sender, EventArgs e)
+        {
+            if (startValue != 0)
+            {
+                gunaLabel1.Text = Int2StringTime(startValue);
+                startValue--;
+            }
+            else
+            {
+                (sender as Timer).Stop();
+                (sender as Timer).Dispose();
+                MessageBox.Show("Вы не успели");
+                Application.Exit();
             }
         }
 
