@@ -173,6 +173,7 @@
             this.gunaComboBox1.Size = new System.Drawing.Size(121, 26);
             this.gunaComboBox1.TabIndex = 40;
             this.gunaComboBox1.Visible = false;
+            this.gunaComboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaComboBox1_KeyDown);
             // 
             // Form1
             // 
@@ -188,7 +189,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Level 1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Click += new System.EventHandler(this.Form1_Click);
             this.ResumeLayout(false);
 
         }

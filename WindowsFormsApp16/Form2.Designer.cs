@@ -47,6 +47,8 @@
             this.gunaGradientButton11 = new Guna.UI.WinForms.GunaGradientButton();
             this.gunaGradientButton12 = new Guna.UI.WinForms.GunaGradientButton();
             this.gunaGradientButton13 = new Guna.UI.WinForms.GunaGradientButton();
+            this.gunaAnimateWindow2 = new Guna.UI.WinForms.GunaAnimateWindow(this.components);
+            this.gunaTextBox3 = new Guna.UI.WinForms.GunaTextBox();
             this.SuspendLayout();
             // 
             // gunaAnimateWindow1
@@ -220,6 +222,7 @@
             this.gunaGradientButton6.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton6.TabIndex = 11;
             this.gunaGradientButton6.Text = "Движение бота";
+            this.gunaGradientButton6.Click += new System.EventHandler(this.gunaGradientButton6_Click);
             // 
             // gunaGradientButton7
             // 
@@ -245,6 +248,7 @@
             this.gunaGradientButton7.Size = new System.Drawing.Size(180, 43);
             this.gunaGradientButton7.TabIndex = 12;
             this.gunaGradientButton7.Text = "Бомба";
+            this.gunaGradientButton7.Click += new System.EventHandler(this.gunaGradientButton7_Click);
             // 
             // gunaGradientButton8
             // 
@@ -437,12 +441,34 @@
             this.gunaGradientButton13.Visible = false;
             this.gunaGradientButton13.Click += new System.EventHandler(this.gunaGradientButton13_Click);
             // 
+            // gunaAnimateWindow2
+            // 
+            this.gunaAnimateWindow2.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_CENTER;
+            this.gunaAnimateWindow2.Interval = 100;
+            this.gunaAnimateWindow2.TargetControl = null;
+            // 
+            // gunaTextBox3
+            // 
+            this.gunaTextBox3.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox3.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox3.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox3.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTextBox3.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaTextBox3.Location = new System.Drawing.Point(458, 207);
+            this.gunaTextBox3.Name = "gunaTextBox3";
+            this.gunaTextBox3.PasswordChar = '\0';
+            this.gunaTextBox3.Size = new System.Drawing.Size(52, 43);
+            this.gunaTextBox3.TabIndex = 21;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BlueViolet;
             this.ClientSize = new System.Drawing.Size(512, 456);
+            this.Controls.Add(this.gunaTextBox3);
             this.Controls.Add(this.gunaGradientButton13);
             this.Controls.Add(this.gunaGradientButton12);
             this.Controls.Add(this.gunaGradientButton11);
@@ -462,7 +488,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form2";
             this.Text = "Form2";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -488,5 +513,7 @@
         private Guna.UI.WinForms.GunaGradientButton gunaGradientButton9;
         private Guna.UI.WinForms.GunaGradientButton gunaGradientButton13;
         private Guna.UI.WinForms.GunaGradientButton gunaGradientButton12;
+        private Guna.UI.WinForms.GunaAnimateWindow gunaAnimateWindow2;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox3;
     }
 }

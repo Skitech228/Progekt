@@ -11,6 +11,7 @@ namespace WindowsFormsApp16
 {
     class Arr
     {
+        //ReadMaps
         public int[,] ReadArray(string filename)
         {
             int[,] result = null;
@@ -43,6 +44,8 @@ namespace WindowsFormsApp16
 
             return result;
         }
+
+        //HardsKount
         public int Hards(string filename)
         {
             int n;
@@ -55,6 +58,8 @@ namespace WindowsFormsApp16
 
             return n;
         }
+
+        //DefoltMape
         public GunaPictureBox[,] pic(int raz,string fon,string pers)
         {
             int x=0;
@@ -81,10 +86,12 @@ namespace WindowsFormsApp16
             }
             System.Drawing.Image imag = System.Drawing.Image.FromFile(@pers);
             guna[0,0].Image = imag;
-            imag = System.Drawing.Image.FromFile(@"D:\end.jpg");
+            imag = System.Drawing.Image.FromFile(@"Pict\YP\fon\Colorama_Peat_Brown_CO180_2.jpg");
             guna[raz-1,raz-1].Image=imag;
             return guna;
         }
+
+        //HardsPictures
         public GunaPictureBox[] hards(int raz,string pers)
         {
             int x = 0;
@@ -106,18 +113,22 @@ namespace WindowsFormsApp16
             }
             return guna;
         }
+
+        //FonPictures
         public GunaPictureBox Defolt(System.Drawing.Point sys)
         {
             GunaPictureBox pic = new GunaPictureBox();
             pic.Location = sys;
             System.Drawing.Size si = new System.Drawing.Size(100, 100);
             pic.Size = si;
-            System.Drawing.Image imag2 = System.Drawing.Image.FromFile(@"D:\Вода.png");
+            System.Drawing.Image imag2 = System.Drawing.Image.FromFile(@"Pict\YP\fon\Вода.png");
             pic.Image = imag2;
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
             pic.Visible = true;
             return pic;
         }
+
+        //???Pictures
         public GunaPictureBox Defolt(System.Drawing.Point sys,string par)
         {
             GunaPictureBox pic = new GunaPictureBox();
@@ -130,6 +141,8 @@ namespace WindowsFormsApp16
             pic.Visible = true;
             return pic;
         }
+
+        //???Pictures
         public GunaPictureBox picture(System.Drawing.Point sys,string pars)
         {
             GunaPictureBox pic = new GunaPictureBox();
@@ -142,28 +155,34 @@ namespace WindowsFormsApp16
             pic.Visible = true;
             return pic;
         }
+
+        //PersPicture
         public string Pers()
         {
             string[] line = new string[9];
-            using (var reader = new StreamReader(@"D:\filesettings.txt"))
+            using (var reader = new StreamReader("filesettings.txt"))
             {
                 line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
             }
             return line[0];
         }
+
+        //FormTime
         public int Time()
         {
             string[] line = new string[9];
-            using (var reader = new StreamReader(@"D:\settings.txt"))
+            using (var reader = new StreamReader("settings.txt"))
             {
                 line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
             }
             return int.Parse(line[1]);
         }
+
+        //Map
         public string pars(int a)
         {
             string[] line = new string[9];
-            using (var reader = new StreamReader(@"D:\filesettings.txt"))
+            using (var reader = new StreamReader("filesettings.txt"))
             {
                 line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
             }
@@ -174,19 +193,23 @@ namespace WindowsFormsApp16
             else
             return line[5];
         }
+
+        //BotPict
         public string Bot()
         {
             string[] line = new string[9];
-            using (var reader = new StreamReader(@"D:\filesettings.txt"))
+            using (var reader = new StreamReader("filesettings.txt"))
             {
                 line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
             }
             return line[6];
         }
+
+        //Setting True/False
         public string Setting()
         {
             string[] line = new string[9];
-            using (var reader = new StreamReader(@"D:\filesettings.txt"))
+            using (var reader = new StreamReader("filesettings.txt"))
             {
                 line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
             }

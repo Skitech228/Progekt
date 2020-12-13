@@ -13,9 +13,11 @@ namespace WindowsFormsApp16
 {
     public partial class Form3 : Form
     {
+        #region Settings
+
         public string pers = new Arr().Pers();
-        public string fon = @"D:\Вода.png";
-        public string hard = @"D:\serce_plamya.png";
+        public string hard = @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\serce_plamya.png";
+        public string fon = @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\YP\fon\Вода.png";
         public string bot = new Arr().Bot();
         public string setting = new Arr().Setting();
         GunaPictureBox[,] a;
@@ -23,9 +25,20 @@ namespace WindowsFormsApp16
         public int[,] mas;
         public int[] hardsmas;
         GunaPictureBox guna = new GunaPictureBox();
+        Timer tm = null;
+        int startValue = new Arr().Time();
+
+        #endregion
+
+        #region Form
         public Form3()
         {
             InitializeComponent();
+            if (setting == "true")
+            {
+                gunaButton2.Visible = true;
+                gunaComboBox1.Visible = true;
+            }
             Arr ar = new Arr();
             pers = @ar.Pers();
             a = ar.pic(8,fon,pers);
@@ -34,7 +47,7 @@ namespace WindowsFormsApp16
                 this.Controls.Add(item);
             }
             mas = ar.ReadArray(ar.pars(2));
-            hardsmas = new int[ar.Hards(@"D:\settings.txt")];
+            hardsmas = new int[ar.Hards("settings.txt")];
             hards = ar.hards(hardsmas.Length, hard);
             for (int i = 0; i < hardsmas.Length; i++)
             {
@@ -50,7 +63,7 @@ namespace WindowsFormsApp16
                 {
                     if (mas[i, j] == 2)
                     {
-                        guna = ar.picture(a[i, j].Location, @"D:\4.jpg");
+                        guna = ar.picture(a[i, j].Location, @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\YP\prep\gratis-png-arbol-de-navidad-ano-nuevo-arbol-dibujo-pino-arbol-de-navidad.png");
                         this.Controls.Remove(a[i, j]);
                         a[i, j] = guna;
                         this.Controls.Add(a[i, j]);
@@ -63,9 +76,81 @@ namespace WindowsFormsApp16
             tm.Start();
         }
 
-        Timer tm = null;
-        int startValue = new Arr().Time();
+        private void Form3_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+        private void UpdateForm()
+        {
+            setting = new Arr().Setting();
+            if (setting == "true")
+            {
+                gunaButton2.Visible = true;
+                gunaComboBox1.Visible = true;
+            }
+            else
+            {
+                gunaButton2.Visible = false;
+                gunaComboBox1.Visible = false;
+            }
+            startValue = new Arr().Time();
+            foreach (var item in a)
+            {
+                this.Controls.Remove(item);
+            }
+            Arr ar = new Arr();
+            pers = @ar.Pers();
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    this.Controls.Remove(a[i, j]);
+                }
+            }
+            a = ar.pic(8, fon, pers);
+            foreach (var item in a)
+            {
+                this.Controls.Add(item);
+            }
+            mas = ar.ReadArray(ar.pars(2));
+            hardsmas = new int[ar.Hards("settings.txt")];
+            hards = ar.hards(hardsmas.Length, hard);
+            foreach (var item in hards)
+            {
+                this.Controls.Add(item);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (mas[i, j] == 2)
+                    {
+                        guna = ar.picture(a[i, j].Location, @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\YP\prep\gratis-png-arbol-de-navidad-ano-nuevo-arbol-dibujo-pino-arbol-de-navidad.png");
+                        this.Controls.Remove(a[i, j]);
+                        a[i, j] = guna;
+                        this.Controls.Add(a[i, j]);
+                    }
+                }
+            }
+        }
+        public void UpdateHards()
+        {
+            Arr ar = new Arr();
+            foreach (var item in hards)
+            {
+                this.Controls.Remove(item);
+            }
+            hardsmas = new int[ar.Hards("settings.txt")];
+            hards = ar.hards(hardsmas.Length, hard);
+            foreach (var item in hards)
+            {
+                this.Controls.Add(item);
+            }
+        }
 
+        #endregion
+
+        #region Time
         private string Int2StringTime(int time)
         {
             int hours = (time - (time % (60 * 60))) / (60 * 60);
@@ -90,6 +175,9 @@ namespace WindowsFormsApp16
             }
         }
 
+        #endregion
+
+        #region Buttons
         private void gunaAdvenceButton1_Click(object sender, EventArgs e)
         {
             Form2 f = new Form2();
@@ -97,72 +185,42 @@ namespace WindowsFormsApp16
             f.Show();
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+        private void gunaButton1_Click(object sender, EventArgs e)
         {
-
+            UpdateHards();
+            UpdateForm();
         }
 
-        private void Form3_FormClosed(object sender, FormClosedEventArgs e)
+        private void gunaButton2_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
-        private void UpdateForm()
-        {
-            startValue = new Arr().Time();
-            foreach (var item in a)
+            if (gunaComboBox1.Text == "1")
             {
-                this.Controls.Remove(item);
+                Form1 f = new Form1();
+                f.Show();
+                this.Hide();
             }
-            Arr ar = new Arr();
-            pers = @ar.Pers();
-            for (int i = 0; i < 8; i++)
+            if (gunaComboBox1.Text == "3")
             {
-                for (int j = 0; j < 8; j++)
-                {
-                    this.Controls.Remove(a[i, j]);
-                }
-            }
-            a = ar.pic(8, fon, pers);
-            foreach (var item in a)
-            {
-                this.Controls.Add(item);
-            }
-            mas = ar.ReadArray(ar.pars(2));
-            hardsmas = new int[ar.Hards(@"D:\settings.txt")];
-            hards = ar.hards(hardsmas.Length, hard);
-            foreach (var item in hards)
-            {
-                this.Controls.Add(item);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    if (mas[i, j] == 2)
-                    {
-                        guna = ar.picture(a[i, j].Location, @"D:\4.jpg");
-                        this.Controls.Remove(a[i, j]);
-                        a[i, j] = guna;
-                        this.Controls.Add(a[i, j]);
-                    }
-                }
+                Form4 f = new Form4();
+                f.Show();
+                this.Hide();
             }
         }
-        public void UpdateHards()
-        {
-            Arr ar = new Arr();
-            foreach (var item in hards)
-            {
-                this.Controls.Remove(item);
-            }
-            hardsmas = new int[ar.Hards(@"D:\settings.txt")];
-            hards = ar.hards(hardsmas.Length, hard);
-            foreach (var item in hards)
-            {
-                this.Controls.Add(item);
-            }
-        }
+
+        #endregion
+
+        #region Keys
         private void gunaTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown(e);
+        }
+
+        private void gunaComboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown(e);
+        }
+
+        private void KeyDown(KeyEventArgs e)
         {
             bool f = false;
             Arr ar = new Arr();
@@ -280,10 +338,7 @@ namespace WindowsFormsApp16
             }
         }
 
-        private void gunaButton1_Click(object sender, EventArgs e)
-        {
-            UpdateHards();
-            UpdateForm();
-        }
+        #endregion
+
     }
 }
