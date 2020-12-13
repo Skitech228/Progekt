@@ -18,12 +18,13 @@ namespace WindowsFormsApp16
         public string pers = new Arr().Pers();
         public string hard = @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\serce_plamya.png";
         public string fon = @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\YP\fon\Вода.png";
-        public string bot = new Arr().Bot();
         public string setting = new Arr().Setting();
         GunaPictureBox[,] a;
         GunaPictureBox[] hards;
         public int[,] mas;
         public int[] hardsmas;
+        public int BonusSch;
+        public string BonusImage= new Arr().Bonus();
         GunaPictureBox guna = new GunaPictureBox();
         #endregion
 
@@ -175,6 +176,31 @@ namespace WindowsFormsApp16
         private void gunaTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
             KeysDown(e);
+            BonusMethod();
+        }
+
+        private void BonusMethod()
+        {
+            BonusSch++;
+            if (BonusSch == 5)
+            {
+                Random random = new Random();
+                while (true)
+                {
+                    int i = random.Next(0, 5);
+                    int j = random.Next(0, 5);
+                    if (mas[i, j] == 0 && i!=5 && j!=5)
+                    {
+                            Arr ar = new Arr();
+                            guna = ar.picture(a[i, j].Location, BonusImage);
+                            this.Controls.Remove(a[i, j]);
+                            a[i, j] = guna;
+                            this.Controls.Add(a[i, j]);
+                            mas[i, j] = 3;
+                            break;
+                    }
+                }
+            }
         }
 
         private void KeysDown(KeyEventArgs e)
@@ -182,12 +208,20 @@ namespace WindowsFormsApp16
             bool f = false;
             Arr ar = new Arr();
             int j = 0;
+            int i = 0;
             if (e.KeyData == Keys.Down)
-                for (int i = 0; i < 6; i++)
+                for (i = 0; i < 6; i++)
                 {
                     for (j = 0; j < 6; j++)
                     {
                         if (mas[i, j] == 1 && i != 5)
+                        {
+                            if (mas[i+1, j] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i + 1, j] != 2)
                             {
                                 mas[i, j] = 0;
@@ -202,16 +236,24 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i + 1, j]);
                                 f = true;
                             }
+                        }    
                     }
                     if (f)
                         break;
                 }
             if (e.KeyData == Keys.Right)
-                for (int i = 0; i < 6; i++)
+                for (i = 0; i < 6; i++)
                 {
                     for (j = 0; j < 6; j++)
                     {
                         if (mas[i, j] == 1 && j != 5)
+                        {
+                            if (mas[i, j+1] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i, j + 1] != 2)
                             {
                                 mas[i, j] = 0;
@@ -226,6 +268,7 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i, j + 1]);
                                 f = true;
                             }
+                        }
                         if (f)
                             break;
                     }
@@ -233,11 +276,18 @@ namespace WindowsFormsApp16
                         break;
                 }
             if (e.KeyData == Keys.Left)
-                for (int i = 0; i < 6; i++)
+                for (i = 0; i < 6; i++)
                 {
                     for (j = 0; j < 6; j++)
                     {
                         if (mas[i, j] == 1 && j != 0)
+                        {
+                            if (mas[i, j-1] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i, j - 1] != 2)
                             {
                                 mas[i, j] = 0;
@@ -252,6 +302,7 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i, j - 1]);
                                 f = true;
                             }
+                        }
                         if (f)
                             break;
                     }
@@ -259,11 +310,18 @@ namespace WindowsFormsApp16
                         break;
                 }
             if (e.KeyData == Keys.Up)
-                for (int i = 0; i < 6; i++)
+                for (i = 0; i < 6; i++)
                 {
                     for (j = 0; j < 6; j++)
                     {
                         if (mas[i, j] == 1 && i != 0)
+                        {
+                            if (mas[i-1, j] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i - 1, j] != 2)
                             {
                                 mas[i, j] = 0;
@@ -278,6 +336,7 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i - 1, j]);
                                 f = true;
                             }
+                        }
                         if (f)
                             break;
                     }
@@ -296,6 +355,7 @@ namespace WindowsFormsApp16
         private void gunaComboBox1_KeyDown(object sender, KeyEventArgs e)
         {
             KeysDown(e);
+            BonusMethod();
         }
         #endregion Keys
     }

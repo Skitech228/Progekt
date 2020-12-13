@@ -59,6 +59,57 @@ namespace WindowsFormsApp16
             return n;
         }
 
+        //Hards++
+        public void Hardses()
+        {
+            Arr ar = new Arr();
+            string[] line = new string[9];
+            using (var reader = new StreamReader("settings.txt"))
+            {
+                line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
+                var values = int.Parse(line[0]);
+                values++;
+                line[0] = values.ToString();
+            }
+            File.WriteAllLines("settings.txt", line.ToArray());
+        }
+
+        //Hards++
+        public void Hardses(int values)
+        {
+            Arr ar = new Arr();
+            string[] line = new string[9];
+            using (var reader = new StreamReader("settings.txt"))
+            {
+                line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
+                values++;
+                line[0] = values.ToString();
+            }
+            File.WriteAllLines("settings.txt", line.ToArray());
+        }
+
+        //Hards--
+        public void Hardsoff()
+        {
+            Arr ar = new Arr();
+            string[] line = new string[9];
+            using (var reader = new StreamReader("settings.txt"))
+            {
+                line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
+                var values = int.Parse(line[0]);
+                values--;
+                if (values == 0)
+                {
+                    reader.Close();
+                    Hardses(values);
+                    MessageBox.Show("Вы откинулись");
+                    Application.Exit();
+                }
+                line[0] = values.ToString();
+            }
+            File.WriteAllLines("settings.txt", line.ToArray());
+        }
+
         //DefoltMape
         public GunaPictureBox[,] pic(int raz,string fon,string pers)
         {
@@ -214,6 +265,28 @@ namespace WindowsFormsApp16
                 line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
             }
             return line[7];
+        }
+
+        //BonusImage
+        public string Bonus()
+        {
+            string[] line = new string[9];
+            using (var reader = new StreamReader("filesettings.txt"))
+            {
+                line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
+            }
+            return line[1];
+        }
+
+        //BombImage
+        public string Bomb()
+        {
+            string[] line = new string[9];
+            using (var reader = new StreamReader("filesettings.txt"))
+            {
+                line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
+            }
+            return line[2];
         }
     }
 }

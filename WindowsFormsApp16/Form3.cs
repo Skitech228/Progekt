@@ -19,6 +19,8 @@ namespace WindowsFormsApp16
         public string hard = @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\serce_plamya.png";
         public string fon = @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\YP\fon\Вода.png";
         public string bot = new Arr().Bot();
+        public string bomb = new Arr().Bomb();
+        public int BombSch;
         public string setting = new Arr().Setting();
         GunaPictureBox[,] a;
         GunaPictureBox[] hards;
@@ -26,6 +28,8 @@ namespace WindowsFormsApp16
         public int[] hardsmas;
         GunaPictureBox guna = new GunaPictureBox();
         Timer tm = null;
+        public int BonusSch;
+        public string BonusImage = new Arr().Bonus();
         int startValue = new Arr().Time();
 
         #endregion
@@ -161,6 +165,7 @@ namespace WindowsFormsApp16
 
         void tm_Tick(object sender, EventArgs e)
         {
+            BombBoom();
             if (startValue != 0)
             {
                 gunaLabel1.Text = Int2StringTime(startValue);
@@ -172,6 +177,39 @@ namespace WindowsFormsApp16
                 (sender as Timer).Dispose();
                 MessageBox.Show("Вы не успели");
                 Application.Exit();
+            }
+        }
+
+        private void BombBoom()
+        {
+            bool f = false;
+            if (startValue % 5 == 0)
+            {
+
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (mas[i, j] == 4)
+                        {
+                            Arr ar = new Arr();
+                            guna = ar.picture(a[i, j].Location, @"C:\Users\Skitech\source\repos\Skitech228\Progekt\WindowsFormsApp16\bin\Debug\Pict\YP\bomb\boom.png");
+                            this.Controls.Remove(a[i, j]);
+                            a[i, j] = guna;
+                            this.Controls.Add(a[i, j]);
+                            mas[i, j] = 0;
+                            BombSch = 0;
+                            if (mas[i, j + 1] == 1 || mas[i, j - 1] == 1 || mas[i + 1, j] == 1 || mas[i - 1, j] == 1)
+                            {
+                                ar.Hardsoff();
+                                UpdateHards();
+                                f = true;
+                            }
+                        }
+                        if (f) break;
+                    }
+                    if (f) break;
+                }
             }
         }
 
@@ -213,11 +251,63 @@ namespace WindowsFormsApp16
         private void gunaTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDown(e);
+            BonusMethod();
+            BombMethod();
         }
 
         private void gunaComboBox1_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDown(e);
+            BonusMethod();
+            BombMethod();
+        }
+
+        private void BonusMethod()
+        {
+            BonusSch++;
+            if (BonusSch == 5)
+            {
+                Random random = new Random();
+                while (true)
+                {
+                    int i = random.Next(0, 7);
+                    int j = random.Next(0, 7);
+                    if (mas[i, j] == 0 && i != 7 && j != 7)
+                    {
+                        Arr ar = new Arr();
+                        guna = ar.picture(a[i, j].Location, BonusImage);
+                        this.Controls.Remove(a[i, j]);
+                        a[i, j] = guna;
+                        this.Controls.Add(a[i, j]);
+                        mas[i, j] = 3;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void BombMethod()
+        {
+            BombSch++;
+            if (BombSch == 5)
+            {
+                Random random = new Random();
+                while (true)
+                {
+                    int i = random.Next(1, 6);
+                    int j = random.Next(1, 6);
+                    if (mas[i, j] == 0)
+                    {
+                        Arr ar = new Arr();
+                        guna = ar.picture(a[i, j].Location, bomb);
+                        this.Controls.Remove(a[i, j]);
+                        a[i, j] = guna;
+                        this.Controls.Add(a[i, j]);
+                        mas[i, j] = 4;
+                        break;
+                    }
+                }
+            }
         }
 
         private void KeyDown(KeyEventArgs e)
@@ -231,6 +321,15 @@ namespace WindowsFormsApp16
                     for (j = 0; j < 8; j++)
                     {
                         if (mas[i, j] == 1 && i != 7)
+                        {
+                            if (mas[i + 1, j] == 4)
+                                BombSch = 0;
+                            if (mas[i+1, j] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i + 1, j] != 2)
                             {
                                 mas[i, j] = 0;
@@ -245,6 +344,7 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i + 1, j]);
                                 f = true;
                             }
+                        }
                     }
                     if (f)
                         break;
@@ -255,6 +355,15 @@ namespace WindowsFormsApp16
                     for (j = 0; j < 8; j++)
                     {
                         if (mas[i, j] == 1 && j != 7)
+                        {
+                            if (mas[i, j + 1] == 4)
+                                BombSch = 0;
+                            if (mas[i, j+1] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i, j + 1] != 2)
                             {
                                 mas[i, j] = 0;
@@ -269,6 +378,7 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i, j + 1]);
                                 f = true;
                             }
+                        }
                         if (f)
                             break;
                     }
@@ -281,6 +391,15 @@ namespace WindowsFormsApp16
                     for (j = 0; j < 8; j++)
                     {
                         if (mas[i, j] == 1 && j != 0)
+                        {
+                            if (mas[i, j - 1] == 4)
+                                BombSch = 0;
+                            if (mas[i, j-1] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i, j - 1] != 2)
                             {
                                 mas[i, j] = 0;
@@ -295,6 +414,7 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i, j - 1]);
                                 f = true;
                             }
+                        }
                         if (f)
                             break;
                     }
@@ -307,6 +427,15 @@ namespace WindowsFormsApp16
                     for (j = 0; j < 8; j++)
                     {
                         if (mas[i, j] == 1 && i != 0)
+                        {
+                            if (mas[i - 1, j] == 4)
+                                BombSch = 0;
+                            if (mas[i-1, j] == 3)
+                            {
+                                ar.Hardses();
+                                UpdateHards();
+                                BonusSch = 0;
+                            }
                             if (mas[i - 1, j] != 2)
                             {
                                 mas[i, j] = 0;
@@ -321,6 +450,7 @@ namespace WindowsFormsApp16
                                 this.Controls.Add(a[i - 1, j]);
                                 f = true;
                             }
+                        }
                         if (f)
                             break;
                     }

@@ -161,6 +161,7 @@ namespace WindowsFormsApp16
             gunaGradientButton10.Visible = false;
             gunaGradientButton11.Visible = false;
         }
+
         //SettingTrue
         private void gunaGradientButton12_Click(object sender, EventArgs e)
         {
@@ -174,6 +175,7 @@ namespace WindowsFormsApp16
             gunaGradientButton12.Visible = false;
             gunaGradientButton13.Visible = false;
         }
+
         //Setting False
         private void gunaGradientButton13_Click(object sender, EventArgs e)
         {
@@ -191,8 +193,17 @@ namespace WindowsFormsApp16
         //Bomb
         private void gunaGradientButton7_Click(object sender, EventArgs e)
         {
-
+            string[] line = new string[9];
+            using (var reader = new StreamReader("filesettings.txt"))
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.ShowDialog();
+                line = reader.ReadToEnd().Split('\n').Select(l => l.Trim()).ToArray();
+                line[2] = openFileDialog1.FileName;
+            }
+            File.WriteAllLines("filesettings.txt", line);
         }
+
         //BotTime
         private void gunaGradientButton6_Click(object sender, EventArgs e)
         {
